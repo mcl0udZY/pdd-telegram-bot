@@ -275,22 +275,12 @@ def callback_message(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'q_1_20')
 def callback_message(callback):
-    markup = types.InlineKeyboardMarkup()
     bot.send_message(callback.message.chat.id, "Вопрос 20 Билет 1.\n"
                                                "Что понимается под временем реакции водителя?\n\n"
                                                "1. Время с момента обнаружения водителем опасности до полной остановки транспортного средства.\n"
                                                "<u>2. Время с момента обнаружения водителем опасности до начала принятия мер по ее избежанию.</u>\n"
-                                               "3. Время, необходимое для переноса ноги с педали управления подачей топлива на педаль тормоза.\n", reply_markup=markup)
-
-
-
-
-
-
-
-
-
-
+                                               "3. Время, необходимое для переноса ноги с педали управления подачей топлива на педаль тормоза.\n")
+    bot.send_message(callback.message.chat.id, '/start - Нажмите, чтобы вернуться к выбору билета')
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'n2')
@@ -298,26 +288,255 @@ def callback_message(callback):
     markup = types.InlineKeyboardMarkup()
     next = types.InlineKeyboardButton('2 воп.', callback_data='q_2_2')
     markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_1.jpg', 'rb'))
     bot.send_message(callback.message.chat.id, "Вопрос 1 Билет 2.\n"
                                                "Сколько полос для движения имеет данная дорога?\n\n"
                                                "1. Две.\n"
-                                               "2. Четыре.\n"
+                                               "<u>2. Четыре.</u>\n"
                                                "3. Пять.\n", reply_markup=markup)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_2')
 def callback_message(callback):
     markup = types.InlineKeyboardMarkup()
-    next = types.InlineKeyboardButton('2 воп.', callback_data='q_2_2')
+    next = types.InlineKeyboardButton('3 воп.', callback_data='q_2_3')
     markup.add(next)
-    bot.send_message(callback.message.chat.id, "Вопрос 2.\n"
+    bot.send_photo(callback.message.chat.id, open('n2_2.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 2 Билет 2.\n"
                                                "Можно ли Вам въехать на мост первым?\n\n"
-                                               "1. Можно.\n"
+                                               "<u>1. Можно.</u>\n"
                                                "2. Можно, если Вы не затрудните движение встречному автомобилю.\n"
                                                "3. Нельзя.\n", reply_markup=markup)
 
 
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_3')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('4 воп.', callback_data='q_2_4')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_3.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 3 Билет 2.\n"
+                                               "Разрешено ли Вам произвести остановку для посадки пассажира?\n\n"
+                                               "<u>1. Разрешено.</u>\n"
+                                               "2. Разрешено только по четным числам месяца.\n"
+                                               "3. Разрешено только по нечетным числам месяца.\n"
+                                               "4. Запрещено.", reply_markup=markup)
 
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_4')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('5 воп.', callback_data='q_2_5')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_4.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 4 Билет 2.\n"
+                                               "Что запрещено в зоне действия этого знака?\n\n"
+                                               "1. Движение любых транспортных средств.\n"
+                                               "2. Движение всех транспортных средств со скоростью не более 20 км/ч.\n"
+                                               "<u>3. Движение механических транспортных средств.</u>\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_5')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('6 воп.', callback_data='q_2_6')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_5.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 5 Билет 2.\n"
+                                               "Разрешен ли Вам выезд на полосу с реверсивным движением, если реверсивный светофор выключен?\n\n"
+                                               "1. Разрешен.\n"
+                                               "2. Разрешен, если скорость автобуса менее 30 км/ч.\n"
+                                               "<u>3. Запрещен.</u>\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_6')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('7 воп.', callback_data='q_2_7')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_6.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 6 Билет 2.\n"
+                                               "Информационная световая секция в виде силуэта пешехода и стрелки с мигающим сигналом белолунного цвета, расположенная под светофором, информирует водителя о том, что:\n\n"
+                                               "<u>1. На пешеходном переходе, в направлении которого он поворачивает, включен сигнал светофора, разрешающий движение пешеходам</u>\n"
+                                               "2. На пешеходном переходе, в направлении которого он поворачивает, включен сигнал светофора, запрещающий движение пешеходам.\n"
+                                               "3. Он поворачивает в направлении пешеходного перехода.", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_7')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('8 воп.', callback_data='q_2_8')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_7.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 7 Билет 2.\n"
+                                               "Поднятая вверх рука водителя легкового автомобиля является сигналом, информирующим Вас о его намерении:\n\n"
+                                               "1. Повернуть направо.\n"
+                                               "2. Продолжить движение прямо.\n"
+                                               "<u>3. Снизить скорость, чтобы остановиться и уступить дорогу мотоциклу.</u>", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_8')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('9 воп.', callback_data='q_2_9')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_8.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 8 Билет 2.\n"
+                                               "Двигаясь по левой полосе, водитель намерен перестроиться на правую. На каком из рисунков показана ситуация, в которой он обязан уступить дорогу?\n\n"
+                                               "1. На левом.\n"
+                                               "2. На правом.\n"
+                                               "<u>3. На обоих.</u>", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_9')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('10 воп.', callback_data='q_2_10')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_9.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 9 Билет 2.\n"
+                                               "Можно ли Вам выполнить разворот в этом месте?\n\n"
+                                               "<u>1. Можно.</u>\n"
+                                               "2. Можно только при отсутствии приближающегося поезда.\n"
+                                               "3. Нельзя.", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_10')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('11 воп.', callback_data='q_2_11')
+    markup.add(next)
+    bot.send_message(callback.message.chat.id, "Вопрос 10 Билет 2.\n"
+                                               "В каких случаях разрешается наезжать на прерывистые линии разметки, разделяющие проезжую часть на полосы движения?\n\n"
+                                               "1. Только если на дороге нет других транспортных средств.\n"
+                                               "2. Только при движении в темное время суток.\n"
+                                               "<u>3. Только при перестроении.</u>\n"
+                                               "4. Во всех перечисленных случаях.", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_11')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('12 воп.', callback_data='q_2_12')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_11.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 11 Билет 2.\n"
+                                               "Разрешено ли Вам обогнать мотоцикл?\n\n"
+                                               "1. Разрешено.\n"
+                                               "2. Разрешено, если водитель мотоцикла снизил скорость.\n"
+                                               "<u>3. Запрещено.</u>\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_12')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('13 воп.', callback_data='q_2_13')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_12.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 12 Билет 2.\n"
+                                               "Разрешается ли Вам остановиться в указанном месте?\n\n"
+                                               "1. Разрешается.\n"
+                                               "<u>2. Разрешается, если автомобиль будет находиться не ближе 5 м от края пересекаемой проезжей части.</u>\n"
+                                               "3. Запрещается.\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_13')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('14 воп.', callback_data='q_2_14')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_13.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 13 Билет 2.\n"
+                                               "Вы намерены повернуть налево. Кому Вы должны уступить дорогу?\n\n"
+                                               "1. Только пешеходам.\n"
+                                               "2. Только автобусу.\n"
+                                               "<u>3. Автобусу и пешеходам.</u>\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_14')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('15 воп.', callback_data='q_2_15')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_14.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 14 Билет 2.\n"
+                                               "В каком случае Вы имеете преимущество?\n\n"
+                                               "1. Только при повороте направо.\n"
+                                               "2. Только при повороте налево.\n"
+                                               "<u>3. В обоих перечисленных случаях.</u>\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_15')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('16 воп.', callback_data='q_2_16')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_15.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 15 Билет 2.\n"
+                                               "Обязан ли водитель мотоцикла уступить Вам дорогу?\n\n"
+                                               "<u>1. Обязан.</u>\n"
+                                               "2. Не обязан.\n", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_16')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('17 воп.', callback_data='q_2_17')
+    markup.add(next)
+    bot.send_photo(callback.message.chat.id, open('n2_16.jpg', 'rb'))
+    bot.send_message(callback.message.chat.id, "Вопрос 16 Билет 2.\n"
+                                               "Разрешается ли водителю выполнить объезд грузового автомобиля?\n\n"
+                                               "1. Разрешается.\n"
+                                               "2. Разрешается, если между шлагбаумом и остановившимся грузовым автомобилем расстояние более 5 м.\n"
+                                               "<u>3. Запрещается.</u>", reply_markup=markup)
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_17')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('18 воп.', callback_data='q_2_18')
+    markup.add(next)
+    bot.send_message(callback.message.chat.id, "Вопрос 17 Билет 2.\n"
+                                               "В каких из перечисленных случаев запрещена буксировка на гибкой сцепке?\n\n"
+                                               "1. Только на горных дорогах.\n"
+                                               "<u>2. Только в гололедицу.</u>\n"
+                                               "3. Только в темное время суток и в условиях недостаточной видимости.\n"
+                                               "4. Во всех перечисленных случаях.", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_18')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('19 воп.', callback_data='q_2_19')
+    markup.add(next)
+    bot.send_message(callback.message.chat.id, "Вопрос 18 Билет 2.\n"
+                                               "Запрещается эксплуатация мототранспортных средств (категории L), если остаточная глубина рисунка протектора шин (при отсутствии индикаторов износа) составляет не более:\n\n"
+                                               "<u>1. 0,8 мм.</u>\n"
+                                               "2. 1,0 мм.\n"
+                                               "3. 1,6 мм.\n"
+                                               "4. 2,0 мм.", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_19')
+def callback_message(callback):
+    markup = types.InlineKeyboardMarkup()
+    next = types.InlineKeyboardButton('20 воп.', callback_data='q_2_20')
+    markup.add(next)
+    bot.send_message(callback.message.chat.id, "Вопрос 19 Билет 2.\n"
+                                               "Исключает ли антиблокировочная тормозная система возможность возникновения заноса или сноса при прохождении поворота?\n\n"
+                                               "1. Полностью исключает возможность возникновения только заноса.\n"
+                                               "2. Полностью исключает возможность возникновения только сноса.\n"
+                                               "<u>3. Не исключает возможность возникновения сноса или заноса.</u>", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'q_2_20')
+def callback_message(callback):
+    bot.send_message(callback.message.chat.id, "Вопрос 20 Билет 2.\n"
+                                               "В каких случаях следует начинать сердечно-легочную реанимацию пострадавшего?\n\n"
+                                               "1. При наличии болей в области сердца и затрудненного дыхания.\n"
+                                               "2. При отсутствии у пострадавшего сознания, независимо от наличия дыхания.\n"
+                                               "<u>3. При отсутствии у пострадавшего сознания, дыхания и кровообращения.</u>")
+    bot.send_message(callback.message.chat.id, '/start - Нажмите, чтобы вернуться к выбору билета')
 
 bot.polling(non_stop=True)
+
 
