@@ -45,8 +45,14 @@ async def start_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    keyboard = [[InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(1, 6)],  
-                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(6, 11)]]
+    keyboard = [[InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(1, 6)], 
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(6, 11)],
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(11, 16)],
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(16, 21)],
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(21, 26)],
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(26, 31)],
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(31, 36)],
+                [InlineKeyboardButton(f"№ {i}", callback_data=f"ticket_{i}") for i in range(36, 41)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await query.message.reply_text("Выберите номер билета:", reply_markup=reply_markup)
 
