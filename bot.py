@@ -4,15 +4,12 @@ import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
-# Логирование
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 TOKEN = '7943917934:AAFlfQqO-7Rm1giXntcnoBUsYi9QgSVAWTI'
 
-# Функция загрузки всех билетов
 def load_tickets():
-    # Путь относительно текущего файла
     tickets_dir = os.path.join(os.path.dirname(__file__), 'tickets')
     tickets = {}
 
@@ -29,18 +26,15 @@ def load_tickets():
 
     return tickets
 
-# Функция для загрузки конкретного билета
 def load_ticket(ticket_id):
     tickets = load_tickets()
     return tickets.get(ticket_id)
 
-# Стартовая команда /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [[InlineKeyboardButton("📄 Начать новый тест", callback_data='start_test')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text("Билеты ПДД 2023, 2024 г.\n\nВыберите действие:", reply_markup=reply_markup)
 
-# Обработка нажатия кнопки "Начать новый тест"
 async def start_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -56,21 +50,19 @@ async def start_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
     await query.message.reply_text("Выберите номер билета:", reply_markup=reply_markup)
 
-# Обработка выбора билета
 async def select_ticket(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    ticket_id = query.data  # Получаем ID билета (например, "ticket_1")
-    ticket_data = load_ticket(ticket_id)  # Загружаем данные билета
+    ticket_id = query.data 
+    ticket_data = load_ticket(ticket_id)  
 
     if not ticket_data:
         await query.message.reply_text(f"Билет {ticket_id} не найден.")
         return
 
-    await send_question(update, context, ticket_id, 0)  # Отправляем первый вопрос билета
+    await send_question(update, context, ticket_id, 0) 
 
-# Функция отправки вопроса с фото или без
 async def send_question(update: Update, context: ContextTypes.DEFAULT_TYPE, ticket_id, question_index):
     ticket_data = load_ticket(ticket_id)
     question_data = ticket_data[question_index]
@@ -91,7 +83,6 @@ async def send_question(update: Update, context: ContextTypes.DEFAULT_TYPE, tick
 
     await update.callback_query.message.reply_text(question_text, reply_markup=reply_markup)
 
-# Обработка ответа пользователя
 async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     callback_data = query.data
@@ -128,7 +119,6 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await query.message.reply_text("Тест завершён!")
 
-# Основная функция для запуска бота
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
