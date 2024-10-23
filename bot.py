@@ -7,7 +7,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandle
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-TOKEN = '8188856331:AAEClLW5DNEWunRcwZuYNACG8131U6U1do0'
+TOKEN = '7943917934:AAFlfQqO-7Rm1giXntcnoBUsYi9QgSVAWTI'
 
 def load_tickets():
     tickets_dir = os.path.join(os.path.dirname(__file__), 'tickets')
@@ -131,4 +131,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
